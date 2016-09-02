@@ -6,3 +6,4 @@
 /.bundle
 /vendor
 /Gemfile.lock
+/ISO*.yaml
