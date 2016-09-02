@@ -1,5 +1,5 @@
 require 'thor'
-require 'simp/release/tools'
+require 'simp/release/tools/packages'
 
 module Simp::Release::Tools::CLI; end
 class Simp::Release::Tools::CLI::Packages < Thor
@@ -8,23 +8,27 @@ class Simp::Release::Tools::CLI::Packages < Thor
   `list` will list all packages from an archive YAML file.
   EOF
 
-  desc '`record [FILE] [PATH_TO_SIMP_CORE]`',
+  desc '`record [PATH] [OUTFILE]`',
        'record packages information for this release'
-  def record(
-     file=File.expand_path( 'release_rpms.yaml', Dir.pwd ),
-     path=Dir.pwd
-  )
-    puts 'TODO record!'
+  def record(path=Dir.pwd, outfile=nil)
+    packages.record(path,outfile)
   end
 
   desc '`list FILE`', 'list packages in ISO packages file'
   def list
     puts 'TODO list file!'
+    raise NotImplementedError
   end
 
   desc '`changelog OLDFILE NEWFILE`', 'describe package diff'
   def changelog
     puts 'TODO changelog!'
+    raise NotImplementedError
+  end
+
+  private
+  def packages
+    @packages ||= Simp::Release::Tools::Packages.new
   end
 end
 
