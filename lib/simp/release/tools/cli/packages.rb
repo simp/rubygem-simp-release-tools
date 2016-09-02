@@ -21,21 +21,30 @@ class Simp::Release::Tools::CLI::Packages < Thor
 
   desc '`changelog OLDFILE NEWFILE`', 'describe package diff'
   method_option :use_packages_dir,
-                :default => true,
+                :default => false,
                 :desc => 'Include RPMs under the Packages/ dir',
                 :type => :boolean,
                 :aliases => '-P'
   method_option :use_simp_dirs,
-                :default => false,
+                :lazy_default => true,
                 :desc => 'Include RPMs under the SIMP/* dirs',
                 :type => :boolean,
                 :aliases => '-S'
+  method_option :use_other_dirs,
+                :default => false,
+                :desc => 'Include RPMs under any other dirs',
+                :type => :boolean,
+                :aliases => '-O'
+  method_option :out_file,
+                :desc => 'file path for an RST file',
+                :aliases => '-f',
+                :type => :string
   def changelog(old_file, new_file)
     root_paths = []
     root_paths << :packages_dir if options[:use_packages_dir]
     root_paths << :simp_dirs    if options[:use_simp_dirs]
-    packages.changelog(old_file, new_file, root_paths)
-    raise NotImplementedError, 'TODO changelog!'
+    root_paths << :other_dirs   if options[:use_other_dirs]
+    packages.changelog(old_file, new_file, root_paths, options[:out_file])
   end
 
   private

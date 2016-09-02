@@ -9,7 +9,12 @@ TODO: Delete this and the text above, and describe your gem
 simp-release package record simp-core/SIMP_ISO_STAGING/CentOS6.8-x86_64/
 
 # recording RPM manifest from a mounted ISO
-simp-release package record /var/run/media/username/SIMP-4.2.0-3.Alpha
+simp-release package record /var/run/media/username/SIMP-4.2.0-2/
+
+
+# Generating a changelog RPM Updates table using two recorded RPM manifests
+simp-release package changelog -S -f out-5.1.X.rst \
+   ISO_RPMs_VDD_for_SIMP-5.1.0-3.yaml ISO_RPMs_VDD_for_SIMP-5.1.0-4.Alpha_20160902-1230.yaml
 
 ```
 
