@@ -10,7 +10,19 @@ module Simp::Release::Tools
 
   class Simp::Release::Tools::Packages
     include Simp
-    # type = :simp_core_root or :iso
+
+
+    # root_paths can be 1 or both elements of [:packages_dir, :simp_dirs]
+    def changelog(old_file, new_file, root_paths=[])
+
+      raise ArgumentError, 'Cannot accept empty root_paths' if root_paths.empty?
+      old_hash = YAML.load File.read(old_file)
+      new_hash = YAML.load File.read(new_file)
+      # removed = old.keys - new.keys
+      # added = new.keys - old.keys
+      binding.pry
+    end
+
     def record(root_path,out_file)
       unless (
         File.directory?(File.join(root_path,'SIMP')) &&

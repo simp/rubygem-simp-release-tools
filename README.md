@@ -4,6 +4,15 @@ Welcome to your new gem! In this directory, you'll find the files you need to be
 
 TODO: Delete this and the text above, and describe your gem
 
+```bash
+# recording RPM manifest after building an ISO from [simp-core](https://github.com/simp/simp-core)
+simp-release package record simp-core/SIMP_ISO_STAGING/CentOS6.8-x86_64/
+
+# recording RPM manifest from a mounted ISO
+simp-release package record /var/run/media/username/SIMP-4.2.0-3.Alpha
+
+```
+
 ## Installation
 
 Add this line to your application's Gemfile:

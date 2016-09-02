@@ -16,14 +16,26 @@ class Simp::Release::Tools::CLI::Packages < Thor
 
   desc '`list FILE`', 'list packages in ISO packages file'
   def list
-    puts 'TODO list file!'
-    raise NotImplementedError
+    raise NotImplementedError, 'TODO list file!'
   end
 
   desc '`changelog OLDFILE NEWFILE`', 'describe package diff'
-  def changelog
-    puts 'TODO changelog!'
-    raise NotImplementedError
+  method_option :use_packages_dir,
+                :default => true,
+                :desc => 'Include RPMs under the Packages/ dir',
+                :type => :boolean,
+                :aliases => '-P'
+  method_option :use_simp_dirs,
+                :default => false,
+                :desc => 'Include RPMs under the SIMP/* dirs',
+                :type => :boolean,
+                :aliases => '-S'
+  def changelog(old_file, new_file)
+    root_paths = []
+    root_paths << :packages_dir if options[:use_packages_dir]
+    root_paths << :simp_dirs    if options[:use_simp_dirs]
+    packages.changelog(old_file, new_file, root_paths)
+    raise NotImplementedError, 'TODO changelog!'
   end
 
   private
