@@ -13,6 +13,17 @@ simp-release package record /var/run/media/username/SIMP-4.2.0-3.Alpha
 
 ```
 
+This relies on the command-line executable **rpmdev-vercmp**.  On EL/Fedora systems, this is provided by the `rpmdevtools` package.  To install:
+
+```bash
+# From EL6/EL7
+sudo yum install -y rpmdevtools
+
+# From Fedora
+sudo dnf install -y rpmdevtools
+```
+
+
 ## Installation
 
 Add this line to your application's Gemfile:
