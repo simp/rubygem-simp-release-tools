@@ -1,32 +1,14 @@
 # Simp::Release::Tools
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/simp/release/tools`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-TODO: Delete this and the text above, and describe your gem
-
-```bash
-# recording RPM manifest after building an ISO from [simp-core](https://github.com/simp/simp-core)
-simp-release package record simp-core/SIMP_ISO_STAGING/CentOS6.8-x86_64/
-
-# recording RPM manifest from a mounted ISO
-simp-release package record /var/run/media/username/SIMP-4.2.0-2/
-
-
-# Generating a changelog RPM Updates table using two recorded RPM manifests
-simp-release package changelog -S -f out-5.1.X.rst \
-   ISO_RPMs_VDD_for_SIMP-5.1.0-3.yaml ISO_RPMs_VDD_for_SIMP-5.1.0-4.Alpha_20160902-1230.yaml
-
-```
-
-This relies on the command-line executable **rpmdev-vercmp**.  On EL/Fedora systems, this is provided by the `rpmdevtools` package.  To install:
-
-```bash
-# From EL6/EL7
-sudo yum install -y rpmdevtools
-
-# From Fedora
-sudo dnf install -y rpmdevtools
-```
+* [Installation](#installation)
+	* [OS Prerequisites](#os-prerequisites)
+* [Usage](#usage)
+	* [`package`](#package)
+		* [`package record`](#package-record)
+		* [`package changelog`](#package-changelog)
+* [Development](#development)
+* [Contributing](#contributing)
 
 
 ## Installation
@@ -45,9 +27,47 @@ Or install it yourself as:
 
     $ gem install simp-release-tools
 
+### OS Prerequisites
+
+The `package changelog` command relies on the command-line executable **rpmdev-vercmp**.  On EL/Fedora systems, this is provided by the `rpmdevtools` package.  To install these tools:
+
+```bash
+# From EL6/EL7
+sudo yum install -y rpmdevtools
+
+# From Fedora
+sudo dnf install -y rpmdevtools
+```
+
+
 ## Usage
 
-TODO: Write usage instructions here
+### `package`
+
+#### `package record`
+Recording an RPM manifest after building an ISO from [simp-core](https://github.com/simp/simp-core):
+
+```bash
+simp-release package record simp-core/SIMP_ISO_STAGING/CentOS6.8-x86_64/
+```
+Recording RPM manifest from a mounted ISO
+
+```bash
+simp-release package record /var/run/media/username/SIMP-4.2.0-2/
+```
+
+
+#### `package changelog`
+
+Generating a changelog RPM Updates table using two recorded RPM manifests:
+
+```bash
+simp-release package changelog -S -f out-5.1.X.rst \
+   ISO_RPMs_VDD_for_SIMP-5.1.0-3.yaml ISO_RPMs_VDD_for_SIMP-5.1.0-4.Alpha_20160902-1230.yaml
+
+```
+
+
 
 ## Development
 
@@ -57,5 +77,5 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/simp-release-tools.
+Bug reports and pull requests are welcome on GitHub at https://github.com/op-ct/simp-release-tools.
 
