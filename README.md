@@ -44,6 +44,15 @@ sudo dnf install -y rpmdevtools
 
 ### `package`
 
+The `simp-release package COMMAND` commands can help generate the **RPM Updates** section of the [simp-core](https://github.com/simp/simp-core) `CHANGELOG.rst`.
+
+1. Mount the ISO of the previous SIMP release and record its contents: `simp-release package record simp-core/SIMP_ISO_STAGING/CentOS6.8-x86_64/`
+
+2. Just after building the your latest release Candidate, run `simp-release package record PATH/TO/SIMP_ISO_STAGING/OS_DIRECTORY/`
+
+3. Generate the 
+
+
 #### `package record`
 Recording an RPM manifest after building an ISO from [simp-core](https://github.com/simp/simp-core):
 
